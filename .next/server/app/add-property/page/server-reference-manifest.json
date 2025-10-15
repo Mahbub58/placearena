@@ -1,0 +1,16 @@
+{
+  "node": {
+    "40aeae1b6519d93c041da15f0b72d29f21c9f09f70": {
+      "workers": {
+        "app/add-property/page": {
+          "moduleId": "[project]/.next-internal/server/app/add-property/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/add-property/page": "action-browser"
+      }
+    }
+  },
+  "edge": {}
+}
