@@ -9,6 +9,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { Property } from './schemas/property.schema';
 
@@ -20,6 +21,13 @@ export class PropertyController {
   async crate(@Body() createPropertyDto: CreatePropertyDto) {
     console.log(createPropertyDto);
     return await this.propertyService.create(createPropertyDto);
+  }
+  @Get('search')
+  async searchProperties(@Query('q') query: string) {
+    if (!query || query.trim().length === 0) {
+      return await this.propertyService.getAll();
+    }
+    return await this.propertyService.searchProperties(query);
   }
   @Get()
   async getAll() {

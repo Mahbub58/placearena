@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
 import SearchFilters from "../components/SearchFilters";
 import MobileBottomNav from "../components/MobileBottomNav";
@@ -18,22 +18,64 @@ export default function Home() {
   const [filteredType, setFilteredType] = useState("All Types");
   const [priceRange, setPriceRange] = useState({ min: 0, max: 100000 });
   const [properties, setProperties] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handlePriceRangeChange = useCallback((min: number, max: number) => {
     setPriceRange({ min, max });
   }, []);
-  useEffect(() => {
-    async function fetchData() {
-      const data = await getHomePageProperties();
-      setProperties(
-        Array.isArray(data)
-          ? data
-          : Array.isArray((data as any)?.data)
-          ? ((data as any).data as any[])
-          : []
-      );
+
+  // Debounced search function
+  const handleSearchChange = useCallback((query: string) => {
+    setSearchQuery(query);
+
+    // Clear existing timeout
+    if (searchTimeoutRef.current) {
+      clearTimeout(searchTimeoutRef.current);
     }
-    fetchData();
+
+    // Set new timeout for debouncing
+    searchTimeoutRef.current = setTimeout(async () => {
+      if (query.trim().length > 0) {
+        setIsSearching(true);
+        try {
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000/api/v1'}/property/search?q=${encodeURIComponent(query)}`
+          );
+          const data = await res.json();
+          setProperties(
+            Array.isArray(data)
+              ? data
+              : Array.isArray((data as any)?.data)
+              ? ((data as any).data as any[])
+              : []
+          );
+        } catch (error) {
+          console.error("Search error:", error);
+        } finally {
+          setIsSearching(false);
+        }
+      } else {
+        // If search query is empty, fetch all properties
+        fetchAllProperties();
+      }
+    }, 500); // 500ms debounce delay
+  }, []);
+
+  const fetchAllProperties = async () => {
+    const data = await getHomePageProperties();
+    setProperties(
+      Array.isArray(data)
+        ? data
+        : Array.isArray((data as any)?.data)
+        ? ((data as any).data as any[])
+        : []
+    );
+  };
+
+  useEffect(() => {
+    fetchAllProperties();
   }, []);
 
   return (
@@ -70,6 +112,7 @@ export default function Home() {
           onLocationChange={setFilteredLocation}
           onTypeChange={setFilteredType}
           onPriceRangeChange={handlePriceRangeChange}
+          onSearchChange={handleSearchChange}
         />
       </div>
 
@@ -77,11 +120,16 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-3 md:px-6">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2 md:mb-4">
-              Featured Properties in Khulna
+              {searchQuery
+                ? `Search Results for "${searchQuery}"`
+                : "Featured Properties in Khulna"}
             </h2>
             <p className="text-sm md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Discover the best rental properties carefully selected for your
-              comfort and lifestyle needs.
+              {isSearching
+                ? "Searching..."
+                : searchQuery
+                ? `Found ${properties.length} ${properties.length === 1 ? "property" : "properties"}`
+                : "Discover the best rental properties carefully selected for your comfort and lifestyle needs."}
             </p>
           </div>
 

@@ -174,8 +174,75 @@ const Footer = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$
     }
 });
 const metadata = {
-    title: "Place Arena",
-    description: ""
+    metadataBase: new URL('https://www.placearena.com'),
+    title: {
+        default: "PlaceArena - Find Your Perfect Rental Home in Khulna",
+        template: "%s | PlaceArena"
+    },
+    description: "Discover premium rental properties in Khulna, Bangladesh. Find apartments, family homes, bachelor pads, and commercial spaces. Verified owners, affordable rent, trusted platform.",
+    keywords: [
+        "rental properties Khulna",
+        "house rent Khulna",
+        "apartment Khulna",
+        "bachelor room Khulna",
+        "family flat Khulna",
+        "property rent Bangladesh",
+        "PlaceArena"
+    ],
+    authors: [
+        {
+            name: "PlaceArena"
+        }
+    ],
+    creator: "PlaceArena",
+    publisher: "PlaceArena",
+    formatDetection: {
+        email: false,
+        address: false,
+        telephone: false
+    },
+    openGraph: {
+        type: "website",
+        locale: "en_US",
+        url: "https://www.placearena.com",
+        title: "PlaceArena - Find Your Perfect Rental Home in Khulna",
+        description: "Discover premium rental properties in Khulna, Bangladesh. Find apartments, family homes, bachelor pads, and commercial spaces.",
+        siteName: "PlaceArena",
+        images: [
+            {
+                url: "/banner.jpg",
+                width: 1200,
+                height: 630,
+                alt: "PlaceArena - Rental Properties in Khulna"
+            }
+        ]
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "PlaceArena - Find Your Perfect Rental Home in Khulna",
+        description: "Discover premium rental properties in Khulna, Bangladesh.",
+        images: [
+            "/banner.jpg"
+        ],
+        creator: "@placearena"
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1
+        }
+    },
+    icons: {
+        icon: "/favicon.ico",
+        shortcut: "/favicon.ico",
+        apple: "/apple-icon.png"
+    },
+    manifest: "/manifest.json"
 };
 function RootLayout({ children }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("html", {
@@ -188,12 +255,12 @@ function RootLayout({ children }) {
                     href: "/favicon.ico"
                 }, void 0, false, {
                     fileName: "[project]/src/app/layout.tsx",
-                    lineNumber: 45,
+                    lineNumber: 98,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/layout.tsx",
-                lineNumber: 44,
+                lineNumber: 97,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("body", {
@@ -201,25 +268,25 @@ function RootLayout({ children }) {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Header$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/src/app/layout.tsx",
-                        lineNumber: 50,
+                        lineNumber: 103,
                         columnNumber: 9
                     }, this),
                     children,
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(Footer, {}, void 0, false, {
                         fileName: "[project]/src/app/layout.tsx",
-                        lineNumber: 52,
+                        lineNumber: 105,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/layout.tsx",
-                lineNumber: 47,
+                lineNumber: 100,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/layout.tsx",
-        lineNumber: 43,
+        lineNumber: 96,
         columnNumber: 5
     }, this);
 }

@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import PriceRangeFilter from "./PriceRangeFilter";
-import { Home, LocationEditIcon } from "lucide-react";
+import { Home, LocationEditIcon, Search } from "lucide-react";
 
 interface SearchFiltersProps {
   onLocationChange: (location: string) => void;
   onTypeChange: (type: string) => void;
   onPriceRangeChange?: (min: number, max: number) => void;
+  onSearchChange?: (query: string) => void;
 }
 
 const khulnaAreas = [
@@ -38,11 +39,13 @@ export default function SearchFilters({
   onLocationChange,
   onTypeChange,
   onPriceRangeChange,
+  onSearchChange,
 }: SearchFiltersProps) {
   const [selectedLocation, setSelectedLocation] = useState("All Areas");
   const [selectedType, setSelectedType] = useState("All Types");
   const [locationDropdownOpen, setLocationDropdownOpen] = useState(false);
   const [typeDropdownOpen, setTypeDropdownOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleLocationSelect = (location: string) => {
     setSelectedLocation(location);
@@ -62,10 +65,31 @@ export default function SearchFilters({
     }
   };
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+    if (onSearchChange) {
+      onSearchChange(value);
+    }
+  };
+
   return (
     <div>
       {/* Desktop Filters */}
       <div className="hidden md:block bg-white dark:bg-gray-900 shadow-lg rounded-2xl p-6 mx-6 -mt-8 relative z-10">
+        {/* Search Bar */}
+        <div className="mb-4">
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              placeholder="Search properties by title, location, features..."
+              className="w-full pl-12 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400"
+            />
+          </div>
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {/* Location Dropdown */}
           <div className="relative">
@@ -169,6 +193,19 @@ export default function SearchFilters({
 
       {/* Mobile Filters */}
       <div className="md:hidden bg-white dark:bg-gray-900 shadow-lg rounded-xl p-3 mx-3 -mt-6 relative z-10">
+        {/* Search Bar - Mobile */}
+        <div className="mb-3">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              placeholder="Search properties..."
+              className="w-full pl-10 pr-3 py-2 text-sm border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400"
+            />
+          </div>
+        </div>
         <div className="space-y-3">
           {/* Location Dropdown - Mobile */}
           <div className="relative">

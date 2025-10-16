@@ -1,0 +1,12 @@
+# *
+User-agent: *
+Allow: /
+
+# Disallow admin and auth pages
+Disallow: /admin
+Disallow: /login
+Disallow: /signup
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://www.placearena.com/sitemap.xml

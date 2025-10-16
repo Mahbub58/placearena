@@ -25,6 +25,12 @@ let PropertyController = class PropertyController {
         console.log(createPropertyDto);
         return await this.propertyService.create(createPropertyDto);
     }
+    async searchProperties(query) {
+        if (!query || query.trim().length === 0) {
+            return await this.propertyService.getAll();
+        }
+        return await this.propertyService.searchProperties(query);
+    }
     async getAll() {
         return await this.propertyService.getAll();
     }
@@ -61,6 +67,13 @@ __decorate([
     __metadata("design:paramtypes", [create_property_dto_1.CreatePropertyDto]),
     __metadata("design:returntype", Promise)
 ], PropertyController.prototype, "crate", null);
+__decorate([
+    (0, common_1.Get)('search'),
+    __param(0, (0, common_1.Query)('q')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], PropertyController.prototype, "searchProperties", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),

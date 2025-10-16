@@ -48,4 +48,5 @@ export declare class PropertyService {
         id: string;
         session: any;
     }): Promise<boolean>;
+    searchProperties(query: string): Promise<Property[]>;
 }

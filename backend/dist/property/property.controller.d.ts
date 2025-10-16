@@ -12,6 +12,7 @@ export declare class PropertyController {
             __v: number;
         };
     }>;
+    searchProperties(query: string): Promise<Property[]>;
     getAll(): Promise<(import("mongoose").Document<unknown, {}, import("./schemas/property.schema").PropertyDocument, {}, {}> & Property & import("mongoose").Document<unknown, any, any, Record<string, any>, {}> & Required<{
         _id: unknown;
     }> & {

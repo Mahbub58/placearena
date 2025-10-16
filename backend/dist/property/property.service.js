@@ -87,6 +87,18 @@ let PropertyService = class PropertyService {
         }
         return true;
     }
+    async searchProperties(query) {
+        const searchRegex = new RegExp(query, 'i');
+        return await this.propertyModel.find({
+            $or: [
+                { title: searchRegex },
+                { description: searchRegex },
+                { location: searchRegex },
+                { type: searchRegex },
+                { features: { $in: [searchRegex] } },
+            ],
+        });
+    }
 };
 exports.PropertyService = PropertyService;
 exports.PropertyService = PropertyService = __decorate([

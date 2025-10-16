@@ -87,4 +87,18 @@ export class PropertyService {
     }
     return true;
   }
+
+  async searchProperties(query: string): Promise<Property[]> {
+    const searchRegex = new RegExp(query, 'i'); // Case-insensitive search
+
+    return await this.propertyModel.find({
+      $or: [
+        { title: searchRegex },
+        { description: searchRegex },
+        { location: searchRegex },
+        { type: searchRegex },
+        { features: { $in: [searchRegex] } },
+      ],
+    });
+  }
 }
