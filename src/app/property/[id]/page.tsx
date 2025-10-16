@@ -7,7 +7,7 @@ export default async function PropertyPage({
 }) {
   const { id } = await params;
 
-  const res = await fetch(`${process.env.BACKEND_URL}/api/v1/property/${id}`, {
+  const res = await fetch(`${process.env.BACKEND_URL}/property/${id}`, {
     next: { revalidate: 60 },
   });
   if (!res.ok) {

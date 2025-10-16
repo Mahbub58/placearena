@@ -8,8 +8,8 @@ import Loading from "../loading";
 import { useAuthGuard } from "@/utils/useAuthGuard";
 import { getToken, getUserInfo } from "@/services/auth.service";
 import { getUserProfile } from "../actions";
-import { sendOtpToPhone, updateProfile, verifyOtpFromPhone } from "./actions";
-import { CheckCircle2, XCircle } from "lucide-react";
+import { sendOtpToPhone, updateProfile, verifyOtpFromPhone, getUserProperties, deleteProperty } from "./actions";
+import { CheckCircle2, XCircle, Trash2, Edit } from "lucide-react";
 import Image from "next/image";
 
 function ProfileSkeleton() {
@@ -142,19 +142,11 @@ export default function Profile() {
 
   useEffect(() => {
     const fetchProperties = async () => {
-      const res = await fetch(
-        `https://api.placearena.com/api/v1/property/owner/${
-          getUserInfo()?.sub
-        }`,
-        {
-          method: "GET",
-          credentials: "include",
-          next: { tags: ["profile"], revalidate: 0 },
-          cache: "no-store",
-        }
-      );
-      const data = await res.json();
-      setMyProperties(data);
+      const userId = getUserInfo()?.sub;
+      if (userId) {
+        const data = await getUserProperties(userId);
+        setMyProperties(data);
+      }
     };
     fetchProperties();
   }, []);
@@ -245,6 +237,23 @@ export default function Profile() {
         setUserProfile({ ...userProfile, verified: true });
         setIsOtpModalOpen(false);
         setIsVerifyModalOpen(false);
+      }
+    }
+  };
+
+  const handleDeleteProperty = async (propertyId: string) => {
+    if (confirm("Are you sure you want to delete this property?")) {
+      try {
+        await deleteProperty(propertyId);
+        // Refresh the properties list
+        const userId = getUserInfo()?.sub;
+        if (userId) {
+          const data = await getUserProperties(userId);
+          setMyProperties(data);
+        }
+      } catch (error) {
+        console.error("Error deleting property:", error);
+        alert("Failed to delete property. Please try again.");
       }
     }
   };
@@ -639,10 +648,24 @@ export default function Profile() {
                 <div className="flex md:flex-col gap-2">
                   <Link
                     href={`/property/${property._id}`}
-                    className="px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900/40 transition-colors cursor-pointer whitespace-nowrap"
+                    className="flex items-center justify-center px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900/40 transition-colors cursor-pointer whitespace-nowrap"
                   >
                     View
                   </Link>
+                  <Link
+                    href={`/edit-property/${property._id}`}
+                    className="flex items-center justify-center gap-1 px-3 py-1 text-sm bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 rounded-lg hover:bg-purple-200 dark:hover:bg-purple-900/40 transition-colors cursor-pointer whitespace-nowrap"
+                  >
+                    <Edit className="h-3 w-3" />
+                    Edit
+                  </Link>
+                  <button
+                    onClick={() => handleDeleteProperty(property._id)}
+                    className="flex items-center justify-center gap-1 px-3 py-1 text-sm bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-400 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/40 transition-colors cursor-pointer whitespace-nowrap"
+                  >
+                    <Trash2 className="h-3 w-3" />
+                    Delete
+                  </button>
                 </div>
               </div>
             ))}

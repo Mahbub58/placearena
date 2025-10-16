@@ -12,7 +12,7 @@ export async function getUserProfile({
     if (!accessToken) {
       if (refreshToken) {
         const refreshtokenRes = await fetch(
-          `${process.env.BACKEND_URL}/api/v1/auth/refresh`,
+          `${process.env.BACKEND_URL}/auth/refresh`,
           {
             method: "POST",
             body: JSON.stringify({ refresh_token: refreshToken }),
@@ -28,7 +28,7 @@ export async function getUserProfile({
     }
 
     // We have an access token, attempt to load profile
-    const res = await fetch(`${process.env.BACKEND_URL}/api/v1/auth/profile`, {
+    const res = await fetch(`${process.env.BACKEND_URL}/auth/profile`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -42,7 +42,7 @@ export async function getUserProfile({
     } else if (refreshToken) {
       // If access token failed, attempt refresh with provided refresh token
       const refreshtokenRes = await fetch(
-        `${process.env.BACKEND_URL}/api/v1/auth/refresh`,
+        `${process.env.BACKEND_URL}/auth/refresh`,
         {
           method: "POST",
           body: JSON.stringify({ refresh_token: refreshToken }),
@@ -65,7 +65,7 @@ export async function getUserProfile({
 
 export const getHomePageProperties = async () => {
   const res = await fetch(
-    `${process.env.BACKEND_URL}/api/v1/property`,
+    `${process.env.BACKEND_URL}/property`,
     { next: { revalidate: 0 }, cache: "no-store" }
   );
   const data = await res.json();

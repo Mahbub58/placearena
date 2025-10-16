@@ -1,6 +1,6 @@
 "use server";
 export const getSavePageProperties = async ({ ids }: { ids: string[] }) => {
-  const res = await fetch(`${process.env.BACKEND_URL}/api/v1/property/by-ids`, {
+  const res = await fetch(`${process.env.BACKEND_URL}/property/by-ids`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

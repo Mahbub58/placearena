@@ -3,7 +3,7 @@ module.exports = {
 "[project]/src/app/actions.ts [app-rsc] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
-/* __next_internal_action_entry_do_not_use__ [{"40aeae1b6519d93c041da15f0b72d29f21c9f09f70":"getUserProfile","7f68827ba72fe62ce3c487045f5735c66e9d8588c8":"getHomePageProperties"},"",""] */ __turbopack_context__.s({
+/* __next_internal_action_entry_do_not_use__ [{"40f7eac6afd3a93c4de9e921c8e46916e9c3cb9e5d":"getUserProfile","7f304d15a061f4e92045b9865a68a28d5ed199fb45":"getHomePageProperties"},"",""] */ __turbopack_context__.s({
     "getHomePageProperties": ()=>getHomePageProperties,
     "getUserProfile": ()=>getUserProfile
 });
@@ -15,7 +15,7 @@ async function getUserProfile({ accessToken, refreshToken }) {
         // If we don't have an access token, try refreshing with the refresh token
         if (!accessToken) {
             if (refreshToken) {
-                const refreshtokenRes = await fetch(`${process.env.BACKEND_URL}/api/v1/auth/refresh`, {
+                const refreshtokenRes = await fetch(`${process.env.BACKEND_URL}/auth/refresh`, {
                     method: "POST",
                     body: JSON.stringify({
                         refresh_token: refreshToken
@@ -34,7 +34,7 @@ async function getUserProfile({ accessToken, refreshToken }) {
             return null;
         }
         // We have an access token, attempt to load profile
-        const res = await fetch(`${process.env.BACKEND_URL}/api/v1/auth/profile`, {
+        const res = await fetch(`${process.env.BACKEND_URL}/auth/profile`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`
             },
@@ -45,7 +45,7 @@ async function getUserProfile({ accessToken, refreshToken }) {
             return profileData?.data;
         } else if (refreshToken) {
             // If access token failed, attempt refresh with provided refresh token
-            const refreshtokenRes = await fetch(`${process.env.BACKEND_URL}/api/v1/auth/refresh`, {
+            const refreshtokenRes = await fetch(`${process.env.BACKEND_URL}/auth/refresh`, {
                 method: "POST",
                 body: JSON.stringify({
                     refresh_token: refreshToken
@@ -68,7 +68,7 @@ async function getUserProfile({ accessToken, refreshToken }) {
     }
 }
 const getHomePageProperties = async ()=>{
-    const res = await fetch(`${process.env.BACKEND_URL}/api/v1/property`, {
+    const res = await fetch(`${process.env.BACKEND_URL}/property`, {
         next: {
             revalidate: 0
         },
@@ -82,8 +82,8 @@ const getHomePageProperties = async ()=>{
     getUserProfile,
     getHomePageProperties
 ]);
-(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(getUserProfile, "40aeae1b6519d93c041da15f0b72d29f21c9f09f70", null);
-(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(getHomePageProperties, "7f68827ba72fe62ce3c487045f5735c66e9d8588c8", null);
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(getUserProfile, "40f7eac6afd3a93c4de9e921c8e46916e9c3cb9e5d", null);
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(getHomePageProperties, "7f304d15a061f4e92045b9865a68a28d5ed199fb45", null);
 }),
 "[project]/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript) <locals>": ((__turbopack_context__) => {
 "use strict";
@@ -103,7 +103,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f2e$next$2d$internal$2f$server
 "use strict";
 
 __turbopack_context__.s({
-    "7f68827ba72fe62ce3c487045f5735c66e9d8588c8": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getHomePageProperties"]
+    "7f304d15a061f4e92045b9865a68a28d5ed199fb45": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getHomePageProperties"]
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/actions.ts [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f2e$next$2d$internal$2f$server$2f$app$2f$page$2f$actions$2e$js__$7b$__ACTIONS_MODULE0__$3d3e$__$225b$project$5d2f$src$2f$app$2f$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$2922$__$7d$__$5b$app$2d$rsc$5d$__$28$server__actions__loader$2c$__ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i('[project]/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => "[project]/src/app/actions.ts [app-rsc] (ecmascript)" } [app-rsc] (server actions loader, ecmascript) <locals>');
@@ -112,7 +112,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f2e$next$2d$internal$2f$server
 "use strict";
 
 __turbopack_context__.s({
-    "7f68827ba72fe62ce3c487045f5735c66e9d8588c8": ()=>__TURBOPACK__imported__module__$5b$project$5d2f2e$next$2d$internal$2f$server$2f$app$2f$page$2f$actions$2e$js__$7b$__ACTIONS_MODULE0__$3d3e$__$225b$project$5d2f$src$2f$app$2f$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$2922$__$7d$__$5b$app$2d$rsc$5d$__$28$server__actions__loader$2c$__ecmascript$29$__$3c$exports$3e$__["7f68827ba72fe62ce3c487045f5735c66e9d8588c8"]
+    "7f304d15a061f4e92045b9865a68a28d5ed199fb45": ()=>__TURBOPACK__imported__module__$5b$project$5d2f2e$next$2d$internal$2f$server$2f$app$2f$page$2f$actions$2e$js__$7b$__ACTIONS_MODULE0__$3d3e$__$225b$project$5d2f$src$2f$app$2f$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$2922$__$7d$__$5b$app$2d$rsc$5d$__$28$server__actions__loader$2c$__ecmascript$29$__$3c$exports$3e$__["7f304d15a061f4e92045b9865a68a28d5ed199fb45"]
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f2e$next$2d$internal$2f$server$2f$app$2f$page$2f$actions$2e$js__$7b$__ACTIONS_MODULE0__$3d3e$__$225b$project$5d2f$src$2f$app$2f$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$2922$__$7d$__$5b$app$2d$rsc$5d$__$28$server__actions__loader$2c$__ecmascript$29$__$3c$module__evaluation$3e$__ = __turbopack_context__.i('[project]/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => "[project]/src/app/actions.ts [app-rsc] (ecmascript)" } [app-rsc] (server actions loader, ecmascript) <module evaluation>');
 var __TURBOPACK__imported__module__$5b$project$5d2f2e$next$2d$internal$2f$server$2f$app$2f$page$2f$actions$2e$js__$7b$__ACTIONS_MODULE0__$3d3e$__$225b$project$5d2f$src$2f$app$2f$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$2922$__$7d$__$5b$app$2d$rsc$5d$__$28$server__actions__loader$2c$__ecmascript$29$__$3c$exports$3e$__ = __turbopack_context__.i('[project]/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => "[project]/src/app/actions.ts [app-rsc] (ecmascript)" } [app-rsc] (server actions loader, ecmascript) <exports>');

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const apiResponse = await fetch(
-      `${process.env.BACKEND_URL}/api/v1/auth/refresh`,
+      `${process.env.BACKEND_URL}/auth/refresh`,
       {
         method: "GET",
       }

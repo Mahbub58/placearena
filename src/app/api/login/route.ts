@@ -4,7 +4,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { email, password } = body;
-
+    
     const apiResponse = await fetch(
       `${process.env.BACKEND_URL}/auth/login`,
       {

@@ -1,7 +1,7 @@
 import AdminDashboard from "./AdminDashboard";
 
 const fetchUsers = async () => {
-  const res = await fetch(`${process.env.BACKEND_URL}/api/v1/users`, {
+  const res = await fetch(`${process.env.BACKEND_URL}/users`, {
     next: { tags: ["users"], revalidate: 0 },
     cache: "no-store",
   });
@@ -10,7 +10,7 @@ const fetchUsers = async () => {
 };
 
 const fetchProperties = async () => {
-  const res = await fetch(`${process.env.BACKEND_URL}/api/v1/property`, {
+  const res = await fetch(`${process.env.BACKEND_URL}/property`, {
     next: { tags: ["property"], revalidate: 0 },
     cache: "no-store",
   });
@@ -20,7 +20,7 @@ const fetchProperties = async () => {
 
 const fetchNeedApproveProperties = async () => {
   const res = await fetch(
-    `${process.env.BACKEND_URL}/api/v1/property/not-approved`,
+    `${process.env.BACKEND_URL}/property/not-approved`,
     { next: { tags: ["property"], revalidate: 0 }, cache: "no-store" }
   );
   if (!res.ok) throw new Error("Failed to fetch properties needing approval");

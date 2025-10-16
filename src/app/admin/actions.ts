@@ -9,7 +9,7 @@ export const updateUser = async ({
   id: string;
   updatedData: Record<string, unknown>;
 }) => {
-  const res = await fetch(`${process.env.BACKEND_URL}/api/v1/users/${id}`, {
+  const res = await fetch(`${process.env.BACKEND_URL}/users/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export const updateUser = async ({
 };
 
 export const deleteUser = async (id: string) => {
-  const res = await fetch(`${process.env.BACKEND_URL}/api/v1/users/${id}`, {
+  const res = await fetch(`${process.env.BACKEND_URL}/users/${id}`, {
     method: "DELETE",
     cache: "no-store",
   });
@@ -52,7 +52,7 @@ export const updateProperty = async ({
   id: string;
   updatedData: Record<string, unknown>;
 }) => {
-  const res = await fetch(`${process.env.BACKEND_URL}/api/v1/property/${id}`, {
+  const res = await fetch(`${process.env.BACKEND_URL}/property/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -73,7 +73,7 @@ export const updateProperty = async ({
   return data;
 };
 export const deleteProperties = async (id: string) => {
-  const res = await fetch(`${process.env.BACKEND_URL}/api/v1/property/${id}`, {
+  const res = await fetch(`${process.env.BACKEND_URL}/property/${id}`, {
     method: "DELETE",
     cache: "no-store",
   });
