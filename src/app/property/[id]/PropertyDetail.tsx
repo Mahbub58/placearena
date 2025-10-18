@@ -8,6 +8,7 @@ import React from "react";
 import MobileBottomNav from "../../../components/MobileBottomNav";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { logPageView, logPropertyView } from "@/utils/analytics";
 
 export default function PropertyDetail({
   property,
@@ -39,6 +40,14 @@ export default function PropertyDetail({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showContactModal, setShowContactModal] = useState(false);
   const [showImageModal, setShowImageModal] = useState(false);
+
+  // Track property view
+  useEffect(() => {
+    if (property) {
+      logPageView(`/property/${property._id}`, `Property - ${property.title}`);
+      logPropertyView(property._id, property.title);
+    }
+  }, [property]);
 
   if (!property) {
     return (

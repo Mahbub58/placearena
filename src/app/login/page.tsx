@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Mail, Lock } from "lucide-react";
@@ -8,6 +8,7 @@ import { storeUserInfo } from "@/services/auth.service";
 import { GoogleAuthProvider, signInWithPopup } from "@firebase/auth";
 import { auth } from "../firebase/firebase";
 import { SignUpWithGoogleUser } from "./actions";
+import { logPageView, logLogin } from "@/utils/analytics";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -18,6 +19,11 @@ export default function Login() {
   const [submitStatus, setSubmitStatus] = useState("");
   const router = useRouter();
   const provider = new GoogleAuthProvider();
+
+  // Track page view
+  useEffect(() => {
+    logPageView('/login', 'Login Page');
+  }, []);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -58,6 +64,10 @@ export default function Login() {
         accessToken: data.accessToken,
         refreshToken: data.refreshToken,
       });
+
+      // Track successful login
+      logLogin('email');
+
       router.push("/");
       setSubmitStatus("Login successful! Redirecting...");
     } catch (error) {
@@ -88,6 +98,10 @@ export default function Login() {
           accessToken: data.accessToken,
           refreshToken: data.refreshToken,
         });
+
+        // Track successful Google login
+        logLogin('google');
+
         router.push("/");
         setSubmitStatus("Login successful! Redirecting...");
       } catch (error) {

@@ -7,6 +7,7 @@ import MobileBottomNav from "../components/MobileBottomNav";
 import dynamic from "next/dynamic";
 import Loading from "./loading";
 import { getHomePageProperties } from "./actions";
+import { logPageView, logSearch } from "@/utils/analytics";
 
 const PropertyGrid = dynamic(() => import("../components/PropertyGrid"), {
   ssr: false,
@@ -39,6 +40,10 @@ export default function Home() {
     searchTimeoutRef.current = setTimeout(async () => {
       if (query.trim().length > 0) {
         setIsSearching(true);
+
+        // Track search event
+        logSearch(query);
+
         try {
           const res = await fetch(
             `${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000/api/v1'}/property/search?q=${encodeURIComponent(query)}`
@@ -76,6 +81,8 @@ export default function Home() {
 
   useEffect(() => {
     fetchAllProperties();
+    // Track home page view
+    logPageView('/', 'Home Page - Property Search');
   }, []);
 
   return (

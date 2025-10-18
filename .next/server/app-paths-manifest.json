@@ -1,15 +1,7 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/add-property/page": "app/add-property/page.js",
-  "/api/login/route": "app/api/login/route.js",
-  "/api/property/route": "app/api/property/route.js",
-  "/api/signup/route": "app/api/signup/route.js",
-  "/edit-property/[id]/page": "app/edit-property/[id]/page.js",
   "/login/page": "app/login/page.js",
   "/page": "app/page.js",
-  "/privacy/page": "app/privacy/page.js",
-  "/profile/page": "app/profile/page.js",
   "/properties/page": "app/properties/page.js",
-  "/property/[id]/page": "app/property/[id]/page.js",
   "/signup/page": "app/signup/page.js"
 }

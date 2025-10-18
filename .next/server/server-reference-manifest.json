@@ -1,21 +1,5 @@
 {
   "node": {
-    "7f304d15a061f4e92045b9865a68a28d5ed199fb45": {
-      "workers": {
-        "app/page": {
-          "moduleId": "[project]/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false
-        },
-        "app/properties/page": {
-          "moduleId": "[project]/.next-internal/server/app/properties/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/page": "action-browser",
-        "app/properties/page": "action-browser"
-      }
-    },
     "7fd2d19ac2b5cbe7994074844e1684086e996b0061": {
       "workers": {
         "app/login/page": {
@@ -32,91 +16,20 @@
         "app/signup/page": "action-browser"
       }
     },
-    "40f7eac6afd3a93c4de9e921c8e46916e9c3cb9e5d": {
+    "7f304d15a061f4e92045b9865a68a28d5ed199fb45": {
       "workers": {
-        "app/add-property/page": {
-          "moduleId": "[project]/.next-internal/server/app/add-property/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+        "app/page": {
+          "moduleId": "[project]/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false
         },
-        "app/edit-property/[id]/page": {
-          "moduleId": "[project]/.next-internal/server/app/edit-property/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/profile/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false
-        },
-        "app/profile/page": {
-          "moduleId": "[project]/.next-internal/server/app/profile/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/profile/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+        "app/properties/page": {
+          "moduleId": "[project]/.next-internal/server/app/properties/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false
         }
       },
       "layer": {
-        "app/add-property/page": "action-browser",
-        "app/edit-property/[id]/page": "action-browser",
-        "app/profile/page": "action-browser"
-      }
-    },
-    "7ff95ec204c2eb75b2db15eb029abfa017dfabc2ab": {
-      "workers": {
-        "app/profile/page": {
-          "moduleId": "[project]/.next-internal/server/app/profile/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/profile/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/profile/page": "action-browser"
-      }
-    },
-    "7faa7047999037fbaa4863b1c524807699b9c53eab": {
-      "workers": {
-        "app/profile/page": {
-          "moduleId": "[project]/.next-internal/server/app/profile/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/profile/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/profile/page": "action-browser"
-      }
-    },
-    "7fca10bea69ab5858ed7412509efe588838c9c667e": {
-      "workers": {
-        "app/profile/page": {
-          "moduleId": "[project]/.next-internal/server/app/profile/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/profile/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/profile/page": "action-browser"
-      }
-    },
-    "7f0678f5a2b38e061c510d49a725d16e2b77376634": {
-      "workers": {
-        "app/profile/page": {
-          "moduleId": "[project]/.next-internal/server/app/profile/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/profile/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/profile/page": "action-browser"
-      }
-    },
-    "7f5209f500257d52f029a4475bcdcfe845bfe89ea7": {
-      "workers": {
-        "app/profile/page": {
-          "moduleId": "[project]/.next-internal/server/app/profile/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/profile/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/profile/page": "action-browser"
-      }
-    },
-    "7fcd33fc47bdd8eb8cb7324465824b5ca86faa58a4": {
-      "workers": {
-        "app/edit-property/[id]/page": {
-          "moduleId": "[project]/.next-internal/server/app/edit-property/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/profile/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/edit-property/[id]/page": "action-browser"
+        "app/page": "action-browser",
+        "app/properties/page": "action-browser"
       }
     }
   },

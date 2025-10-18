@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { User, Mail, Phone, Home, Lock } from "lucide-react";
@@ -8,6 +8,7 @@ import { auth } from "../firebase/firebase";
 import { GoogleAuthProvider, signInWithPopup } from "@firebase/auth";
 import { SignUpWithGoogleUser } from "../login/actions";
 import { storeUserInfo } from "@/services/auth.service";
+import { logPageView, logSignUp } from "@/utils/analytics";
 
 export default function Signup() {
   const router = useRouter();
@@ -23,6 +24,11 @@ export default function Signup() {
   const [submitStatus, setSubmitStatus] = useState("");
   const [phone, setPhone] = useState("");
   const provider = new GoogleAuthProvider();
+
+  // Track page view
+  useEffect(() => {
+    logPageView('/signup', 'Signup Page');
+  }, []);
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value;
     if (value.length > 14) {
@@ -95,6 +101,9 @@ export default function Signup() {
         "Account created successfully! Please check your email for verification."
       );
 
+      // Track successful signup
+      logSignUp('email');
+
       setFormData({
         fullName: "",
         email: "",
@@ -148,6 +157,10 @@ export default function Signup() {
           accessToken: data.accessToken,
           refreshToken: data.refreshToken,
         });
+
+        // Track successful Google signup
+        logSignUp('google');
+
         router.push("/");
         setSubmitStatus("Login successful! Redirecting...");
       } catch (error) {
